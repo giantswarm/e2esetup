@@ -33,6 +33,16 @@ func Setup(ctx context.Context, m *testing.M, config Config) error {
 	var err error
 	var errors []error
 
+	if config.AWSClient == nil {
+		return microerror.Maskf(invalidConfigError, "%T.AWSClient must not be empty", config)
+	}
+	if config.Guest == nil {
+		return microerror.Maskf(invalidConfigError, "%T.Guest must not be empty", config)
+	}
+	if config.Host == nil {
+		return microerror.Maskf(invalidConfigError, "%T.Host must not be empty", config)
+	}
+
 	vpcPeerID, err := installHostPeerVPC(config)
 	if err != nil {
 		errors = append(errors, err)
