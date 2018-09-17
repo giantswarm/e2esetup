@@ -56,10 +56,6 @@ required = [
 
 [[constraint]]
   branch = "master"
-  name = "github.com/giantswarm/helmclient"
-
-[[constraint]]
-  branch = "master"
   name = "github.com/giantswarm/microerror"
 
 [[constraint]]
