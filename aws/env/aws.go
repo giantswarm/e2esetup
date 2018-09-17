@@ -12,8 +12,10 @@ const (
 	EnvVarGuestAWSARN               = "GUEST_AWS_ARN"
 	EnvVarGuestAWSAccessKeyID       = "GUEST_AWS_ACCESS_KEY_ID"
 	EnvVarGuestAWSAccessKeySecret   = "GUEST_AWS_SECRET_ACCESS_KEY"
+	EnvVarGuestAWSAccessKeyToken    = "GUEST_AWS_SESSION_TOKEN"
 	EnvVarHostAWSAccessKeyID        = "HOST_AWS_ACCESS_KEY_ID"
 	EnvVarHostAWSAccessKeySecret    = "HOST_AWS_SECRET_ACCESS_KEY"
+	EnvVarHostAWSAccessKeyToken     = "HOST_AWS_SESSION_TOKEN"
 	EnvVarIDRSAPub                  = "IDRSA_PUB"
 )
 
@@ -24,8 +26,10 @@ var (
 	guestAWSARN               string
 	guestAWSAccessKeyID       string
 	guestAWSAccessKeySecret   string
+	guestAWSAccessKeyToken    string
 	hostAWSAccessKeyID        string
 	hostAWSAccessKeySecret    string
+	hostAWSAccessKeyToken     string
 	idRSAPub                  string
 )
 
@@ -60,6 +64,8 @@ func init() {
 		panic(fmt.Sprintf("env var '%s' must not be empty", EnvVarGuestAWSAccessKeySecret))
 	}
 
+	guestAWSAccessKeyToken = os.Getenv(EnvVarGuestAWSAccessKeyToken)
+
 	hostAWSAccessKeyID = os.Getenv(EnvVarHostAWSAccessKeyID)
 	if hostAWSAccessKeyID == "" {
 		panic(fmt.Sprintf("env var '%s' must not be empty", EnvVarHostAWSAccessKeyID))
@@ -69,6 +75,8 @@ func init() {
 	if hostAWSAccessKeySecret == "" {
 		panic(fmt.Sprintf("env var '%s' must not be empty", EnvVarHostAWSAccessKeySecret))
 	}
+
+	hostAWSAccessKeyToken = os.Getenv(EnvVarHostAWSAccessKeyToken)
 
 	idRSAPub = os.Getenv(EnvVarIDRSAPub)
 	if idRSAPub == "" {
@@ -109,7 +117,7 @@ func GuestAWSAccessKeySecret() string {
 }
 
 func GuestAWSAccessKeyToken() string {
-	return ""
+	return guestAWSAccessKeyToken
 }
 
 func HostAWSAccessKeyID() string {
@@ -121,7 +129,7 @@ func HostAWSAccessKeySecret() string {
 }
 
 func HostAWSAccessKeyToken() string {
-	return ""
+	return hostAWSAccessKeyToken
 }
 
 func IDRSAPub() string {
