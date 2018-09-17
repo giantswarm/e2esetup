@@ -108,12 +108,20 @@ func GuestAWSAccessKeySecret() string {
 	return guestAWSAccessKeySecret
 }
 
+func GuestAWSAccessKeyToken() string {
+	return ""
+}
+
 func HostAWSAccessKeyID() string {
 	return hostAWSAccessKeyID
 }
 
 func HostAWSAccessKeySecret() string {
 	return hostAWSAccessKeySecret
+}
+
+func HostAWSAccessKeyToken() string {
+	return ""
 }
 
 func IDRSAPub() string {
