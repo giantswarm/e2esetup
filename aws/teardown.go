@@ -9,7 +9,7 @@ import (
 	"github.com/giantswarm/e2e-harness/pkg/framework"
 	"github.com/giantswarm/microerror"
 
-	"github.com/giantswarm/e2esetup/aws/env"
+	"github.com/giantswarm/e2esetup/aws/internal/env"
 )
 
 func teardown(config Config) error {
