@@ -17,7 +17,7 @@ import (
 	"k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 
-	"github.com/giantswarm/e2esetup/aws/env"
+	"github.com/giantswarm/e2esetup/aws/internal/env"
 )
 
 const (
@@ -73,11 +73,10 @@ func Setup(ctx context.Context, m *testing.M, config Config) error {
 		v = m.Run()
 	}
 
-	if env.KeepResources() != "true" {
+	if !env.KeepResources() {
 		config.Host.DeleteGuestCluster(ctx, provider)
 
-		// only do full teardown when not on CI
-		if env.CircleCI() != "true" {
+		if !env.CircleCI() {
 			err := teardown(config)
 			if err != nil {
 				errors = append(errors, err)
