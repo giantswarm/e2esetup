@@ -40,7 +40,7 @@ func NewSetup(config SetupConfig) (*Setup, error) {
 }
 
 func (s *Setup) EnsureNamespace(ctx context.Context, namespace string) error {
-	s.logger.LogCtx(ctx, "level", "debug", "message", fmt.Sprintf("ensuring Kubernetes namespace %#q", namespace))
+	s.logger.LogCtx(ctx, "level", "debug", "message", fmt.Sprintf("ensuring Kubernetes Namespace %#q", namespace))
 
 	o := func() error {
 		{
@@ -76,7 +76,7 @@ func (s *Setup) EnsureNamespace(ctx context.Context, namespace string) error {
 		return microerror.Mask(err)
 	}
 
-	s.logger.LogCtx(ctx, "level", "debug", "message", fmt.Sprintf("ensured Kubernetes namespace %#q", namespace))
+	s.logger.LogCtx(ctx, "level", "debug", "message", fmt.Sprintf("ensured Kubernetes Namespace %#q", namespace))
 
 	return nil
 }
