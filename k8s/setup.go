@@ -86,12 +86,7 @@ func (s *Setup) EnsureNamespaceDeleted(ctx context.Context, namespace string) er
 
 	o := func() error {
 		{
-			n := &v1.Namespace{
-				ObjectMeta: metav1.ObjectMeta{
-					Name: namespace,
-				},
-			}
-			_, err := s.k8sClient.CoreV1().Namespaces().Delete(n)
+			err := s.k8sClient.CoreV1().Namespaces().Delete(namespace, &metav1.DeleteOptions{})
 			if errors.IsNotFound(err) {
 				// fall through
 			} else if err != nil {
