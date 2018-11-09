@@ -29,7 +29,7 @@ type ReleaseIndex struct {
 	logger      micrologger.Logger
 
 	cache    map[Provider][]versionbundle.IndexRelease
-	cacheMux *sync.RWMutex
+	cacheMux *sync.Mutex
 }
 
 func New(config Config) (*ReleaseIndex, error) {
@@ -45,7 +45,7 @@ func New(config Config) (*ReleaseIndex, error) {
 		logger:      config.Logger,
 
 		cache:    map[Provider][]versionbundle.IndexRelease{},
-		cacheMux: &sync.RWMutex{},
+		cacheMux: &sync.Mutex{},
 	}
 
 	return r, nil
@@ -101,11 +101,11 @@ func (r *ReleaseIndex) getFileContent(ctx context.Context, owner, repo, path str
 func (r *ReleaseIndex) getIndex(ctx context.Context, provider Provider) ([]versionbundle.IndexRelease, error) {
 	var err error
 
-	{
-		r.cacheMux.RLock()
-		index, ok := r.cache[provider]
-		r.cacheMux.RUnlock()
+	r.cacheMux.Lock()
+	defer r.cacheMux.Unlock()
 
+	{
+		index, ok := r.cache[provider]
 		if ok {
 			return index, nil
 		}
@@ -132,9 +132,7 @@ func (r *ReleaseIndex) getIndex(ctx context.Context, provider Provider) ([]versi
 	}
 
 	{
-		r.cacheMux.Lock()
 		r.cache[provider] = index
-		r.cacheMux.Unlock()
 	}
 
 	return index, nil
