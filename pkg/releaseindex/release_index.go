@@ -20,6 +20,10 @@ type Config struct {
 	Logger      micrologger.Logger
 }
 
+// TODO consider this to be extracted as a library.
+//
+//	See https://github.com/giantswarm/giantswarm/issues/4656
+//
 type ReleaseIndex struct {
 	githubToken string
 	logger      micrologger.Logger
