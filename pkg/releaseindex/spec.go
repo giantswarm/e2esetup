@@ -1,19 +1,19 @@
 package releaseindex
 
-type Component string
+type Authority string
 
-func (c Component) String() string {
+func (c Authority) String() string {
 	return string(c)
 }
 
 const (
-	ComponentAWSOperator     Component = "aws-operator"
-	ComponentAzureOperator   Component = "azure-operator"
-	ComponentCertOperator    Component = "cert-operator"
-	ComponentChartOperator   Component = "chart-operator"
-	ComponentClusterOperator Component = "cluster-operator"
-	ComponentFlannelOperator Component = "flannel-operator"
-	ComponentKVMOperator     Component = "kvm-operator"
+	AuthorityAWSOperator     Authority = "aws-operator"
+	AuthorityAzureOperator   Authority = "azure-operator"
+	AuthorityCertOperator    Authority = "cert-operator"
+	AuthorityChartOperator   Authority = "chart-operator"
+	AuthorityClusterOperator Authority = "cluster-operator"
+	AuthorityFlannelOperator Authority = "flannel-operator"
+	AuthorityKVMOperator     Authority = "kvm-operator"
 )
 
 type Provider string
