@@ -35,6 +35,6 @@ func (v VersionType) String() string {
 }
 
 const (
-	VersionTypeLatest  VersionType = "latest"
-	VersionTypeCurrent VersionType = "current"
+	VersionTypeLast VersionType = "last"
+	VersionTypePrev VersionType = "prev"
 )

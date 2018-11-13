@@ -146,9 +146,9 @@ func getVersion(index []versionbundle.IndexRelease, versionType VersionType, com
 	var release versionbundle.IndexRelease
 	{
 		switch versionType {
-		case VersionTypeLatest:
+		case VersionTypeLast:
 			release = index[0]
-		case VersionTypeCurrent:
+		case VersionTypePrev:
 			release = index[1]
 		default:
 			return "", microerror.Maskf(executionFailedError, "unknown version type %#q", versionType.String())
