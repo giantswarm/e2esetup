@@ -56,7 +56,7 @@ func New(config Config) (*ReleaseIndex, error) {
 // NOTE: Release index is cached for a provider after first call. This makes it
 // cheap to call this method multiple times with the same provider. But changes
 // to the installations repository will not be visible.
-func (r *ReleaseIndex) GetVersion(ctx context.Context, provider Provider, versionType VersionType, component Authority) (string, error) {
+func (r *ReleaseIndex) GetVersion(ctx context.Context, provider Provider, versionType Version, component Authority) (string, error) {
 	index, err := r.getIndex(ctx, provider)
 	if err != nil {
 		return "", microerror.Mask(err)
@@ -138,7 +138,7 @@ func (r *ReleaseIndex) getIndex(ctx context.Context, provider Provider) ([]versi
 	return index, nil
 }
 
-func getVersion(index []versionbundle.IndexRelease, versionType VersionType, component Authority) (string, error) {
+func getVersion(index []versionbundle.IndexRelease, versionType Version, component Authority) (string, error) {
 	if len(index) < 2 {
 		return "", microerror.Maskf(executionFailedError, "expected at least 2 releases in the index but got %d", len(index))
 	}
@@ -146,9 +146,9 @@ func getVersion(index []versionbundle.IndexRelease, versionType VersionType, com
 	var release versionbundle.IndexRelease
 	{
 		switch versionType {
-		case VersionTypeLast:
+		case VersionLast:
 			release = index[0]
-		case VersionTypePrev:
+		case VersionPrev:
 			release = index[1]
 		default:
 			return "", microerror.Maskf(executionFailedError, "unknown version type %#q", versionType.String())

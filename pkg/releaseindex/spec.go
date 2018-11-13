@@ -28,13 +28,13 @@ const (
 	ProviderKVM   Provider = "kvm"
 )
 
-type VersionType string
+type Version string
 
-func (v VersionType) String() string {
+func (v Version) String() string {
 	return string(v)
 }
 
 const (
-	VersionTypeLast VersionType = "last"
-	VersionTypePrev VersionType = "prev"
+	VersionLast Version = "last"
+	VersionPrev Version = "prev"
 )
