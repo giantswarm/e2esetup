@@ -15,8 +15,8 @@ import (
 
 /*
 	NOTE: There is a copy of this code in helmclient/integration/setup/k8s
-	package. All changes made here should be reflected in
-	helmclient/integration/setup/k8s.
+	package. All changes made in this package should be reflected in
+	helmclient repo.
 
 		See https://github.com/giantswarm/helmclient/pull/65
 
