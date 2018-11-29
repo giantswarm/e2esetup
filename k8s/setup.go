@@ -13,6 +13,15 @@ import (
 	"k8s.io/client-go/kubernetes"
 )
 
+/*
+	NOTE: There is a copy of this code in helmclient/integration/setup/k8s
+	package. All changes made here should be reflected in
+	helmclient/integration/setup/k8s.
+
+		See https://github.com/giantswarm/helmclient/pull/65
+
+*/
+
 type SetupConfig struct {
 	K8sClient kubernetes.Interface
 	Logger    micrologger.Logger
