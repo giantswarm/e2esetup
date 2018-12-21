@@ -61,7 +61,7 @@ func Setup(ctx context.Context, m *testing.M, config Config) error {
 	}
 
 	if v == 0 {
-		err = config.Guest.Setup()
+		err = config.Guest.Setup(ctx)
 		if err != nil {
 			errors = append(errors, err)
 			v = 1
