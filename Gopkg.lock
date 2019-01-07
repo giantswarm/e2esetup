@@ -144,7 +144,7 @@
   revision = "ae0aa12120a391889540e6c67d0d0e65b73580b9"
 
 [[projects]]
-  branch = "nodesReady"
+  branch = "master"
   digest = "1:737e5dff2a3cfe5cbc46e44b916e90797b265302a6612bb913145cebb127a1c6"
   name = "github.com/giantswarm/e2e-harness"
   packages = [
