@@ -46,7 +46,7 @@ required = [
   branch = "master"
   name = "github.com/giantswarm/backoff"
 
-[[override]]
+[[constraint]]
   branch = "kubernetes-1.13.2"
   name = "github.com/giantswarm/e2e-harness"
 
@@ -62,15 +62,15 @@ required = [
   branch = "master"
   name = "github.com/giantswarm/micrologger"
 
-[[override]]
+[[constraint]]
   name = "k8s.io/apimachinery"
   version = "kubernetes-1.13.2"
 
-[[override]]
+[[constraint]]
   name = "k8s.io/apiserver"
   version = "kubernetes-1.13.2"
 
-[[override]]
+[[constraint]]
   name = "k8s.io/client-go"
   version = "kubernetes-1.13.2"
 
