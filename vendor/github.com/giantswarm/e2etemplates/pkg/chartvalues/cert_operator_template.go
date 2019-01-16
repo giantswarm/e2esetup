@@ -1,6 +1,7 @@
 package chartvalues
 
-const certOperatorTemplate = `clusterRoleBindingName: {{ .ClusterRole.BindingName }}
+const certOperatorTemplate = `
+clusterRoleBindingName: {{ .ClusterRole.BindingName }}
 clusterRoleBindingNamePSP: {{ .ClusterRolePSP.BindingName }}
 clusterRoleName: {{ .ClusterRole.Name }}
 clusterRoleNamePSP: {{ .ClusterRolePSP.Name }}
@@ -14,7 +15,7 @@ Installation:
     GiantSwarm:
       CertOperator:
         CRD:
-          LabelSelector: 'giantswarm.io/cluster={{ .ClusterName }}'
+          LabelSelector: {{ .CRD.LabelSelector }}
     Guest:
       Kubernetes:
         API:
@@ -29,5 +30,6 @@ Installation:
       Registry:
         PullSecret:
           DockerConfigJSON: "{\"auths\":{\"quay.io\":{\"auth\":\"{{ .RegistryPullSecret }}\"}}}"
+namespace: {{ .Namespace }}
 pspName: {{ .PSP.Name }}
 `
