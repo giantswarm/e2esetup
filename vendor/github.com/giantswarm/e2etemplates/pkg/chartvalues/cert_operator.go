@@ -6,18 +6,27 @@ import (
 )
 
 type CertOperatorConfig struct {
-	ClusterName        string
-	ClusterRole        CertOperatorClusterRole
-	ClusterRolePSP     CertOperatorClusterRole
+	ClusterRole        CertOperatorConfigClusterRole
+	ClusterRolePSP     CertOperatorConfigClusterRole
 	CommonDomain       string
+	CRD                CertOperatorConfigCRD
+	Namespace          string
 	RegistryPullSecret string
 	PSP                CertOperatorPSP
 	Vault              CertOperatorVault
 }
 
-type CertOperatorClusterRole struct {
+type CertOperatorConfigClusterRole struct {
 	BindingName string
 	Name        string
+}
+
+type CertOperatorConfigCRD struct {
+	// LabelSelector configures the operator's list watcher label selector to
+	// consider only specific CRs. This is done e.g. for the kvm-operator e2e
+	// tests due to the lack of test env encapsulation. Note that this option
+	// therefore is optional.
+	LabelSelector string
 }
 
 type CertOperatorPSP struct {
@@ -29,9 +38,6 @@ type CertOperatorVault struct {
 }
 
 func NewCertOperator(config CertOperatorConfig) (string, error) {
-	if config.ClusterName == "" {
-		return "", microerror.Maskf(invalidConfigError, "%T.ClusterName must not be empty", config)
-	}
 	if config.ClusterRole.BindingName == "" {
 		config.ClusterRole.BindingName = "cert-operator"
 	}
@@ -46,6 +52,9 @@ func NewCertOperator(config CertOperatorConfig) (string, error) {
 	}
 	if config.CommonDomain == "" {
 		return "", microerror.Maskf(invalidConfigError, "%T.CommonDomain must not be empty", config)
+	}
+	if config.Namespace == "" {
+		config.Namespace = "giantswarm"
 	}
 	if config.PSP.Name == "" {
 		config.PSP.Name = "cert-operator-psp"
