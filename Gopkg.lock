@@ -123,14 +123,14 @@
   revision = "4763148864dc4815b691a69b4f60b4f4a8f88dad"
 
 [[projects]]
-  branch = "kubernetes-1.13.2"
+  branch = "master"
   name = "github.com/giantswarm/e2e-harness"
   packages = [
     "internal/filelogger",
     "pkg/framework",
     "pkg/harness"
   ]
-  revision = "e55a4007948ed0e6e603e09843b3991b9c4aecf3"
+  revision = "2debfbcd1495b5cc719a9191a940da58025b9cbc"
 
 [[projects]]
   branch = "azure_sdk_21.3.0"
@@ -748,6 +748,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "745b615480b6d1a1a3e5354017bb2fa15aabc76ceca0ac244c14bd653ef2d936"
+  inputs-digest = "5fdf37990e2e9b8057d07b0189d4a59039935bf9a505aae2ca132f1f779180af"
   solver-name = "gps-cdcl"
   solver-version = 1
