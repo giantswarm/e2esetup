@@ -11,12 +11,10 @@ import (
 	"k8s.io/client-go/tools/clientcmd"
 )
 
-const (
-	kubeConfigPath = harness.DefaultKubeConfig
-)
-
 type ClientsConfig struct {
 	Logger micrologger.Logger
+
+	KubeConfigPath string
 }
 
 type Clients struct {
@@ -32,9 +30,14 @@ func NewClients(config ClientsConfig) (*Clients, error) {
 		return nil, microerror.Maskf(invalidConfigError, "%T.Logger must not be empty", config)
 	}
 
+	if config.KubeConfigPath == "" {
+		// When we start using kind we should default that to "$HOME/.kube/kind-config-kind".
+		config.KubeConfigPath = harness.DefaultKubeConfig
+	}
+
 	var err error
 
-	restConfig, err := clientcmd.BuildConfigFromFlags("", kubeConfigPath)
+	restConfig, err := clientcmd.BuildConfigFromFlags("", config.KubeConfigPath)
 	if err != nil {
 		return nil, microerror.Mask(err)
 	}
