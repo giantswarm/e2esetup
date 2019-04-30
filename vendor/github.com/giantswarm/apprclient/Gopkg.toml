@@ -25,18 +25,9 @@
 #   unused-packages = true
 
 
-
 [[constraint]]
-  branch = "master"
-  name = "github.com/giantswarm/apiextensions"
-
-[[constraint]]
-  branch = "master"
-  name = "github.com/giantswarm/apprclient"
-
-[[constraint]]
-  branch = "master"
-  name = "github.com/giantswarm/backoff"
+  version = "^2.0.0"
+  name = "github.com/cenkalti/backoff"
 
 [[constraint]]
   branch = "master"
@@ -44,7 +35,7 @@
 
 [[constraint]]
   branch = "master"
-  name = "github.com/giantswarm/helmclient"
+  name = "github.com/giantswarm/k8sportforward"
 
 [[constraint]]
   branch = "master"
@@ -53,31 +44,6 @@
 [[constraint]]
   branch = "master"
   name = "github.com/giantswarm/micrologger"
-
-[[constraint]]
-  name = "github.com/spf13/afero"
-  version = "1.2.2"
-
-[[constraint]]
-  name = "k8s.io/api"
-  version = "kubernetes-1.13.2"
-
-[[constraint]]
-  name = "k8s.io/apiextensions-apiserver"
-  version = "kubernetes-1.13.2"
-
-[[constraint]]
-  name = "k8s.io/apimachinery"
-  version = "kubernetes-1.13.2"
-
-[[constraint]]
-  name = "k8s.io/client-go"
-  version = "kubernetes-1.13.2"
-
-[[constraint]]
-  name = "k8s.io/helm"
-  version = "2.12.0"
-
 
 
 [prune]
