@@ -43,7 +43,7 @@
   name = "github.com/giantswarm/e2e-harness"
 
 [[constraint]]
-  branch = "reduce-backoff"
+  branch = "master"
   name = "github.com/giantswarm/helmclient"
 
 [[constraint]]
