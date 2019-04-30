@@ -14,7 +14,6 @@ import (
 	"github.com/giantswarm/microerror"
 	"github.com/giantswarm/micrologger"
 	"github.com/spf13/afero"
-	apiextensionsv1beta1 "k8s.io/apiextensions-apiserver/pkg/apis/apiextensions/v1beta1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/helm/pkg/helm"
 )
@@ -264,61 +263,6 @@ func (r *Release) Install(ctx context.Context, name string, chartInfo ChartInfo,
 	if err != nil {
 		return microerror.Mask(err)
 	}
-
-	return nil
-}
-
-// TODO Remove once we are done with migration to EnsureInstalled.
-//
-//	Issue https://github.com/giantswarm/giantswarm/issues/4355.
-//
-func (r *Release) InstallOperator(ctx context.Context, name string, chartInfo ChartInfo, values string, crd *apiextensionsv1beta1.CustomResourceDefinition) error {
-	err := r.Install(ctx, name, chartInfo, values, r.condition.CRDExists(ctx, crd))
-	if err != nil {
-		return microerror.Mask(err)
-	}
-	// TODO introduced: https://github.com/giantswarm/e2e-harness/pull/121
-	// This fallback from r.namespace was introduced because not all our
-	// operators accept and apply configured namespaces.
-	//
-	// Tracking issue: https://github.com/giantswarm/giantswarm/issues/4123
-	//
-	// Final version of the code:
-	//
-	//	podName, err := r.podName(r.namespace, fmt.Sprintf("app=%s", name))
-	//	if err != nil {
-	//		return microerror.Mask(err)
-	//	}
-	//	err = r.filelogger.EnsurePodLogging(ctx, r.namespace, podName)
-	//	if err != nil {
-	//		return microerror.Mask(err)
-	//	}
-	//
-	podNamespace := r.namespace
-
-	labelSelector := fmt.Sprintf("app=%s", name)
-
-	podName, err := r.podName(podNamespace, labelSelector)
-	if IsNotFound(err) {
-		podNamespace = "giantswarm"
-		podName, err = r.podName(podNamespace, labelSelector)
-		if err != nil {
-			return microerror.Mask(err)
-		}
-	} else if err != nil {
-		return microerror.Mask(err)
-	}
-
-	err = r.Condition().PodExists(ctx, podNamespace, labelSelector)()
-	if err != nil {
-		return microerror.Mask(err)
-	}
-
-	err = r.fileLogger.EnsurePodLogging(ctx, podNamespace, podName)
-	if err != nil {
-		return microerror.Mask(err)
-	}
-	// TODO end
 
 	return nil
 }
