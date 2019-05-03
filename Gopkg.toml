@@ -55,6 +55,10 @@
   name = "github.com/giantswarm/micrologger"
 
 [[constraint]]
+  branch = "master"
+  name = "github.com/giantswarm/operatorkit"
+
+[[constraint]]
   name = "github.com/spf13/afero"
   version = "1.2.2"
 

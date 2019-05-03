@@ -162,6 +162,14 @@
 
 [[projects]]
   branch = "master"
+  digest = "1:7f108bbeae041753de0a3d8b4bc8d13d4d1c7884129523ece1495104f5591742"
+  name = "github.com/giantswarm/operatorkit"
+  packages = ["client/k8scrdclient"]
+  pruneopts = "UT"
+  revision = "dc60ddf19e89ce0a1ade4a52e94258734bf82dab"
+
+[[projects]]
+  branch = "master"
   digest = "1:f0a5bcad44c3c4cc5a254aa34b2415fd63028e71a13f6368805cd9ec7c62044d"
   name = "github.com/giantswarm/to"
   packages = ["."]
@@ -816,6 +824,7 @@
     "github.com/giantswarm/helmclient",
     "github.com/giantswarm/microerror",
     "github.com/giantswarm/micrologger",
+    "github.com/giantswarm/operatorkit/client/k8scrdclient",
     "github.com/spf13/afero",
     "k8s.io/api/core/v1",
     "k8s.io/apiextensions-apiserver/pkg/apis/apiextensions/v1beta1",
