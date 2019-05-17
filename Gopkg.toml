@@ -59,6 +59,10 @@
   name = "github.com/giantswarm/operatorkit"
 
 [[constraint]]
+  name = "github.com/google/go-github"
+  version = "v25.0.4"
+
+[[constraint]]
   name = "github.com/spf13/afero"
   version = "1.2.2"
 
