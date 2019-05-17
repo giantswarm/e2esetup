@@ -61,12 +61,12 @@
   revision = "6480d4af844c189cf5dd913db24ddd339d3a4f85"
 
 [[projects]]
-  digest = "1:2cd7915ab26ede7d95b8749e6b1f933f1c6d5398030684e6505940a10f31cfda"
+  branch = "master"
+  digest = "1:08188cf7ce7027b22e88cc23da27f17349a0ba7746271a60cbe0a70266c2346f"
   name = "github.com/ghodss/yaml"
   packages = ["."]
   pruneopts = "UT"
-  revision = "0ca9ea5df5451ffdf184b4428c902747c2c11cd7"
-  version = "v1.0.0"
+  revision = "25d852aebe32c875e9c044af3eef9c7dc6bc777f"
 
 [[projects]]
   branch = "master"
@@ -175,6 +175,14 @@
   packages = ["."]
   pruneopts = "UT"
   revision = "ad9fc4aaa835db2a17ddb188047aff6a436886d7"
+
+[[projects]]
+  branch = "master"
+  digest = "1:e997c4d0e4140516e49140997715d99099aee0ec840b7bbfffe2d5f787302ae3"
+  name = "github.com/giantswarm/valuemodifier"
+  packages = ["path"]
+  pruneopts = "UT"
+  revision = "d2e1c33d1402cddd8f1df925e7655610fb6ce523"
 
 [[projects]]
   branch = "master"
@@ -395,6 +403,14 @@
   pruneopts = "UT"
   revision = "588a75ec4f32903aa5e39a2619ba6a4631e28424"
   version = "v1.2.2"
+
+[[projects]]
+  digest = "1:08d65904057412fc0270fc4812a1c90c594186819243160dc779a402d4b6d0bc"
+  name = "github.com/spf13/cast"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "8c9545af88b134710ab1cd196795e7f2388358d7"
+  version = "v1.3.0"
 
 [[projects]]
   digest = "1:c1b1102241e7f645bc8e0c22ae352e8f0dc6484b6cb4d132fa9f24174e0119e2"
@@ -825,6 +841,7 @@
     "github.com/giantswarm/microerror",
     "github.com/giantswarm/micrologger",
     "github.com/giantswarm/operatorkit/client/k8scrdclient",
+    "github.com/giantswarm/valuemodifier/path",
     "github.com/google/go-github/github",
     "github.com/spf13/afero",
     "golang.org/x/oauth2",
