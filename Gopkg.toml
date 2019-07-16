@@ -26,8 +26,8 @@
 
 
 
-[[constraint]]
-  branch = "master"
+[[override]]
+  branch = "kubernetes-1.15.0"
   name = "github.com/giantswarm/apiextensions"
 
 [[constraint]]
@@ -38,8 +38,8 @@
   branch = "master"
   name = "github.com/giantswarm/backoff"
 
-[[constraint]]
-  branch = "master"
+[[override]]
+  branch = "kubernetes-1.15.0"
   name = "github.com/giantswarm/helmclient"
 
 [[constraint]]
@@ -58,29 +58,41 @@
   name = "github.com/google/go-github"
   version = "v25.0.4"
 
+[[override]]
+  version = "v1.5.2"
+  name = "github.com/russross/blackfriday"
+
 [[constraint]]
   name = "github.com/spf13/afero"
   version = "1.2.2"
 
-[[constraint]]
+[[override]]
   name = "k8s.io/api"
-  version = "kubernetes-1.13.2"
+  version = "kubernetes-1.15.0"
 
-[[constraint]]
+[[override]]
   name = "k8s.io/apiextensions-apiserver"
-  version = "kubernetes-1.13.2"
+  version = "kubernetes-1.15.0"
 
-[[constraint]]
+[[override]]
   name = "k8s.io/apimachinery"
-  version = "kubernetes-1.13.2"
+  version = "kubernetes-1.15.0"
 
-[[constraint]]
+[[override]]
   name = "k8s.io/client-go"
-  version = "kubernetes-1.13.2"
+  version = "kubernetes-1.15.0"
 
-[[constraint]]
+[[override]]
+  name = "k8s.io/cli-runtime"
+  version = "kubernetes-1.15.0"
+
+[[override]]
   name = "k8s.io/helm"
-  version = "2.12.0"
+  revision = "55193089e67207363e6f448054113b5a36649d74"
+
+[[override]]
+  name = "sigs.k8s.io/kustomize"
+  version = "2.0.3"
 
 
 
