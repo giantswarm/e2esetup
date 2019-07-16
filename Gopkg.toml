@@ -90,10 +90,6 @@
   name = "k8s.io/helm"
   revision = "55193089e67207363e6f448054113b5a36649d74"
 
-[[override]]
-  name = "sigs.k8s.io/kustomize"
-  version = "2.0.3"
-
 
 
 [prune]
