@@ -2,6 +2,7 @@ package k8s
 
 import (
 	"github.com/giantswarm/apiextensions/pkg/clientset/versioned"
+	"github.com/giantswarm/helmclient"
 	"github.com/giantswarm/microerror"
 	"github.com/giantswarm/micrologger"
 	apiextensionsclient "k8s.io/apiextensions-apiserver/pkg/client/clientset/clientset"
@@ -21,6 +22,7 @@ type Clients struct {
 
 	extClient  *apiextensionsclient.Clientset
 	g8sClient  *versioned.Clientset
+	helmClient helmclient.Interface
 	k8sClient  *kubernetes.Clientset
 	restConfig *rest.Config
 }
@@ -71,11 +73,26 @@ func NewClients(config ClientsConfig) (*Clients, error) {
 		}
 	}
 
+	var helmClient helmclient.Interface
+	{
+		c := helmclient.Config{
+			K8sClient:  k8sClient,
+			Logger:     config.Logger,
+			RestConfig: restConfig,
+		}
+
+		helmClient, err = helmclient.New(c)
+		if err != nil {
+			return nil, microerror.Mask(err)
+		}
+	}
+
 	c := &Clients{
 		logger: config.Logger,
 
 		extClient:  extClient,
 		g8sClient:  g8sClient,
+		helmClient: helmClient,
 		k8sClient:  k8sClient,
 		restConfig: restConfig,
 	}
@@ -89,6 +106,10 @@ func (c *Clients) ExtClient() *apiextensionsclient.Clientset {
 
 func (c *Clients) G8sClient() *versioned.Clientset {
 	return c.g8sClient
+}
+
+func (c *Clients) HelmClient() helmclient.Interface {
+	return c.helmClient
 }
 
 func (c *Clients) K8sClient() *kubernetes.Clientset {
