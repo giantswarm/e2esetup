@@ -14,7 +14,9 @@ import (
 type ClientsConfig struct {
 	Logger micrologger.Logger
 
-	KubeConfigPath string
+	KubeConfigPath  string
+	TillerImage     string
+	TillerNamespace string
 }
 
 type Clients struct {
@@ -79,6 +81,9 @@ func NewClients(config ClientsConfig) (*Clients, error) {
 			K8sClient:  k8sClient,
 			Logger:     config.Logger,
 			RestConfig: restConfig,
+
+			TillerImage:     config.TillerImage,
+			TillerNamespace: config.TillerNamespace,
 		}
 
 		helmClient, err = helmclient.New(c)
