@@ -12,12 +12,12 @@ const (
 	// EnvVarCircleSHA is the process environment variable representing the
 	// CIRCLE_SHA1 env var.
 	EnvVarCircleSHA = "CIRCLE_SHA1"
-	// EnvVarKeepResources is the process environment variable representing the
-	// KEEP_RESOURCES env var.
-	EnvVarKeepResources = "KEEP_RESOURCES"
 	// EnvVarE2EKubeconfig is the process environment variable representing the
 	// E2E_KUBECONFIG env var.
 	EnvVarE2EKubeconfig = "E2E_KUBECONFIG"
+	// EnvVarKeepResources is the process environment variable representing the
+	// KEEP_RESOURCES env var.
+	EnvVarKeepResources = "KEEP_RESOURCES"
 
 	// e2eHarnessDefaultKubeconfig is defined to avoid dependency of
 	// e2e-harness. e2e-harness depends on this project. We don't want
