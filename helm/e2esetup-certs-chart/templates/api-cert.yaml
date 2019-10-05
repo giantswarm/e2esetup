@@ -15,6 +15,7 @@ spec:
     commonName: "api.{{ .Values.cluster.id }}.k8s.{{ .Values.commonDomain }}"
     altNames:
     - "{{ .Values.cluster.id }}.k8s.{{ .Values.commonDomain }}"
+    - "internal-api.{{ .Values.cluster.id }}.k8s.{{ .Values.commonDomain }}"
     - "k8s-master-vm"
     - "kubernetes"
     - "kubernetes.default"
