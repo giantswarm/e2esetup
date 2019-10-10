@@ -8,6 +8,7 @@ import (
 	"github.com/google/go-github/github"
 )
 
+// GetLatestChart returns the latest chart tarball file in the specified catalog.
 func GetLatestChart(ctx context.Context, catalog, app string) (string, error) {
 	client := github.NewClient(nil)
 
