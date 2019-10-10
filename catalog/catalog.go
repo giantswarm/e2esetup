@@ -8,8 +8,7 @@ import (
 	"github.com/google/go-github/github"
 )
 
-func GetLatestChart(catalog, app string) (string, error) {
-	ctx := context.Background()
+func GetLatestChart(ctx context.Context, catalog, app string) (string, error) {
 	client := github.NewClient(nil)
 
 	query := fmt.Sprintf("repo:giantswarm/%s filename:%s", catalog, app)
