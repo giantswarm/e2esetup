@@ -47,7 +47,7 @@ func GetLatestChart(ctx context.Context, catalog, app string) (string, error) {
 	return downloadURL, nil
 }
 
-// GetLatestVersion returns the latest tag in the specified catalog.
+// GetLatestVersion returns the latest version in the specified catalog.
 func GetLatestVersion(ctx context.Context, catalog, app string) (string, error) {
 	index, err := getIndex(catalog)
 	if err != nil {
