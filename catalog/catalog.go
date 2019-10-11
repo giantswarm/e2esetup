@@ -4,37 +4,61 @@ import (
 	"context"
 	"fmt"
 
+	"github.com/ghodss/yaml"
 	"github.com/giantswarm/microerror"
-	"github.com/google/go-github/github"
+	"github.com/levigross/grequests"
 )
 
 // GetLatestChart returns the latest chart tarball file in the specified catalog.
 func GetLatestChart(ctx context.Context, catalog, app string) (string, error) {
-	client := github.NewClient(nil)
-
-	var path string
-	{
-		query := fmt.Sprintf("repo:giantswarm/%s filename:%s", catalog, app)
-		searchOption := github.SearchOptions{
-			Sort: "indexed",
-		}
-		result, _, err := client.Search.Code(ctx, query, &searchOption)
-		if err != nil {
-			return "", microerror.Mask(err)
-		}
-
-		path = result.CodeResults[0].GetPath()
+	index, err := getIndex(catalog)
+	if err != nil {
+		return "", microerror.Mask(err)
 	}
 
 	var downloadURL string
 	{
-		r, _, _, err := client.Repositories.GetContents(ctx, "giantswarm", catalog, path, nil)
-		if err != nil {
-			return "", microerror.Mask(err)
+		entry, ok := index.Entries[app]
+		if !ok {
+			return "", microerror.Maskf(notFoundError, fmt.Sprintf("no app %q in index.yaml", app))
 		}
-
-		downloadURL = r.GetDownloadURL()
+		downloadURL = entry[0].Urls[0]
 	}
 
 	return downloadURL, nil
+}
+
+// GetLatestTag returns the latest tag in the specified catalog.
+func GetLatestTag(ctx context.Context, catalog, app string) (string, error) {
+	index, err := getIndex(catalog)
+	if err != nil {
+		return "", microerror.Mask(err)
+	}
+
+	var version string
+	{
+		entry, ok := index.Entries[app]
+		if !ok {
+			return "", microerror.Maskf(notFoundError, fmt.Sprintf("no app %q in index.yaml", app))
+		}
+		version = entry[0].Version
+	}
+
+	return version, nil
+}
+
+func getIndex(catalog string) (*Index, error) {
+	indexURL := fmt.Sprintf("https://giantswarm.github.io/%s/index.yaml", catalog)
+	resp, err := grequests.Get(indexURL, nil)
+	if err != nil {
+		return &Index{}, microerror.Mask(err)
+	}
+
+	var index Index
+	err = yaml.Unmarshal(resp.Bytes(), &index)
+	if err != nil {
+		return &Index{}, microerror.Mask(err)
+	}
+
+	return &index, nil
 }
