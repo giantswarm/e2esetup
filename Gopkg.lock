@@ -555,6 +555,14 @@
   revision = "b84e30acd515aadc4b783ad4ff83aff3299bdfe0"
 
 [[projects]]
+  digest = "1:c34de7e8f144a065dbcd5a5dab3dfc865d406545da86cd5a654fa720abfa8126"
+  name = "github.com/levigross/grequests"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "d0df86deffcb5d344ab23de5a958d41e44659568"
+  version = "0.10"
+
+[[projects]]
   digest = "1:12cb143f2148bf54bcd9fe622abac17325e85eeb1d84b8ec6caf1c80232108fd"
   name = "github.com/lib/pq"
   packages = [
@@ -787,7 +795,7 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:7a4eaae8773e8fccca11c5c60d5393235e2dc880356f1dc6bc753b114f17e0e6"
+  digest = "1:26bfbd2a378c35a7a291f031811d8d2c4a8f843e1b402c28c27e4ded719832e9"
   name = "golang.org/x/net"
   packages = [
     "context",
@@ -797,6 +805,7 @@
     "http2/hpack",
     "idna",
     "internal/timeseries",
+    "publicsuffix",
     "trace",
   ]
   pruneopts = "UT"
@@ -1552,6 +1561,7 @@
     "github.com/giantswarm/operatorkit/client/k8scrdclient",
     "github.com/giantswarm/valuemodifier/path",
     "github.com/google/go-github/github",
+    "github.com/levigross/grequests",
     "github.com/spf13/afero",
     "golang.org/x/oauth2",
     "k8s.io/api/core/v1",
