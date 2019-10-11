@@ -3,11 +3,12 @@ package catalog
 import (
 	"context"
 	"fmt"
+	"io/ioutil"
+	"net/http"
 	"time"
 
 	"github.com/ghodss/yaml"
 	"github.com/giantswarm/microerror"
-	"github.com/levigross/grequests"
 )
 
 type index struct {
@@ -67,13 +68,19 @@ func GetLatestVersion(ctx context.Context, catalog, app string) (string, error) 
 
 func getIndex(catalog string) (index, error) {
 	indexURL := fmt.Sprintf("https://giantswarm.github.io/%s/index.yaml", catalog)
-	resp, err := grequests.Get(indexURL, nil)
+	resp, err := http.Get(indexURL)
+	if err != nil {
+		return index{}, microerror.Mask(err)
+	}
+	defer resp.Body.Close()
+
+	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
 		return index{}, microerror.Mask(err)
 	}
 
 	var i index
-	err = yaml.Unmarshal(resp.Bytes(), &i)
+	err = yaml.Unmarshal(body, &i)
 	if err != nil {
 		return i, microerror.Mask(err)
 	}
