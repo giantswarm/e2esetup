@@ -3,11 +3,29 @@ package catalog
 import (
 	"context"
 	"fmt"
+	"time"
 
 	"github.com/ghodss/yaml"
 	"github.com/giantswarm/microerror"
 	"github.com/levigross/grequests"
 )
+
+type index struct {
+	APIVersion string             `yaml:"apiVersion"`
+	Entries    map[string][]entry `yaml:"entries"`
+	Generated  time.Time          `yaml:"generated"`
+}
+
+type entry struct {
+	APIVersion  string    `yaml:"apiVersion"`
+	AppVersion  string    `yaml:"appVersion"`
+	Created     time.Time `yaml:"created"`
+	Description string    `yaml:"description"`
+	Digest      string    `yaml:"digest"`
+	Name        string    `yaml:"name"`
+	Urls        []string  `yaml:"urls"`
+	Version     string    `yaml:"version"`
+}
 
 // GetLatestChart returns the latest chart tarball file in the specified catalog.
 func GetLatestChart(ctx context.Context, catalog, app string) (string, error) {
@@ -28,8 +46,8 @@ func GetLatestChart(ctx context.Context, catalog, app string) (string, error) {
 	return downloadURL, nil
 }
 
-// GetLatestTag returns the latest tag in the specified catalog.
-func GetLatestTag(ctx context.Context, catalog, app string) (string, error) {
+// GetLatestVersion returns the latest tag in the specified catalog.
+func GetLatestVersion(ctx context.Context, catalog, app string) (string, error) {
 	index, err := getIndex(catalog)
 	if err != nil {
 		return "", microerror.Mask(err)
@@ -47,18 +65,18 @@ func GetLatestTag(ctx context.Context, catalog, app string) (string, error) {
 	return version, nil
 }
 
-func getIndex(catalog string) (*Index, error) {
+func getIndex(catalog string) (index, error) {
 	indexURL := fmt.Sprintf("https://giantswarm.github.io/%s/index.yaml", catalog)
 	resp, err := grequests.Get(indexURL, nil)
 	if err != nil {
-		return &Index{}, microerror.Mask(err)
+		return index{}, microerror.Mask(err)
 	}
 
-	var index Index
-	err = yaml.Unmarshal(resp.Bytes(), &index)
+	var i index
+	err = yaml.Unmarshal(resp.Bytes(), &i)
 	if err != nil {
-		return &Index{}, microerror.Mask(err)
+		return i, microerror.Mask(err)
 	}
 
-	return &index, nil
+	return i, nil
 }
