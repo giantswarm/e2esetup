@@ -9,8 +9,8 @@ import (
 	"github.com/giantswarm/apprclient"
 	"github.com/giantswarm/backoff"
 	"github.com/giantswarm/e2esetup/internal/filelogger"
-	"github.com/giantswarm/e2esetup/k8s"
 	"github.com/giantswarm/helmclient"
+	"github.com/giantswarm/k8sclient"
 	"github.com/giantswarm/microerror"
 	"github.com/giantswarm/micrologger"
 	"github.com/spf13/afero"
@@ -26,7 +26,7 @@ type Config struct {
 	ApprClient *apprclient.Client
 	HelmClient *helmclient.Client
 	Logger     micrologger.Logger
-	K8sClients *k8s.Clients
+	K8sClients *k8sclient.Clients
 
 	Namespace string
 }
@@ -35,7 +35,7 @@ type Release struct {
 	apprClient *apprclient.Client
 	helmClient *helmclient.Client
 	logger     micrologger.Logger
-	k8sClients *k8s.Clients
+	k8sClients *k8sclient.Clients
 
 	condition  *conditionSet
 	fileLogger *filelogger.FileLogger
