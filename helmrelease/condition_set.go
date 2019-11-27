@@ -4,7 +4,7 @@ import (
 	"context"
 
 	"github.com/giantswarm/backoff"
-	"github.com/giantswarm/e2esetup/k8s"
+	"github.com/giantswarm/k8sclient"
 	"github.com/giantswarm/microerror"
 	"github.com/giantswarm/micrologger"
 	v1 "k8s.io/api/core/v1"
@@ -14,12 +14,12 @@ import (
 )
 
 type conditionSetConfig struct {
-	K8sClients *k8s.Clients
+	K8sClients *k8sclient.Clients
 	Logger     micrologger.Logger
 }
 
 type conditionSet struct {
-	k8sClients *k8s.Clients
+	k8sClients *k8sclient.Clients
 	logger     micrologger.Logger
 }
 
