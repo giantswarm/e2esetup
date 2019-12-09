@@ -43,7 +43,6 @@ func NewClient(config ClientConfig) (*Client, error) {
 			Logger:     config.Logger,
 			RestConfig: config.RestConfig,
 
-			TillerImage:     config.TillerImage,
 			TillerNamespace: config.TillerNamespace,
 		}
 
