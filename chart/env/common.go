@@ -11,8 +11,11 @@ const (
 	// EnvVarCircleSHA is the process environment variable representing the
 	// CIRCLE_SHA1 env var.
 	EnvVarCircleSHA = "CIRCLE_SHA1"
-	// EnvVarE2EKubeconfig is the process environment variable representing the
-	// E2E_KUBECONFIG env var.
+	// EnvVarKubeconfig is the process environment variable representing the
+	// KUBECONFIG env var.
+	EnvVarKubeconfig = "KUBECONFIG"
+	// EnvVarE2EKubeconfig is the deprecated process environment variable
+	// representing the E2E_KUBECONFIG env var. Replaced by KUBECONFIG.
 	EnvVarE2EKubeconfig = "E2E_KUBECONFIG"
 	// EnvVarKeepResources is the process environment variable representing the
 	// KEEP_RESOURCES env var.
