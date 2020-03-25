@@ -9,7 +9,6 @@ require (
 	github.com/Masterminds/sprig v2.22.0+incompatible
 	github.com/PuerkitoBio/purell v1.1.1
 	github.com/PuerkitoBio/urlesc v0.0.0-20170810143723-de5bf2ad4578
-	github.com/Sirupsen/logrus v1.4.2
 	github.com/beorn7/perks v1.0.1
 	github.com/cenkalti/backoff v2.0.0+incompatible
 	github.com/chai2010/gettext-go v0.0.0-20170215093142-bf70f2a70fb1
@@ -77,6 +76,7 @@ require (
 	github.com/prometheus/procfs v0.0.8
 	github.com/rubenv/sql-migrate v0.0.0-20191121092708-da1cb182f00e
 	github.com/russross/blackfriday v1.5.2
+	github.com/sirupsen/logrus v1.4.2
 	github.com/spf13/afero v1.2.2
 	github.com/spf13/cast v1.3.0
 	github.com/spf13/cobra v0.0.5
@@ -103,10 +103,10 @@ require (
 	k8s.io/client-go v0.16.6
 	k8s.io/component-base v0.16.6
 	k8s.io/helm v2.16.1+incompatible
-	k8s.io/klog v0.16.6
-	k8s.io/kube-openapi v0.16.6
+	k8s.io/klog v1.0.0
 	k8s.io/kubectl v0.16.6
 	k8s.io/kubernetes v1.16.6
-	k8s.io/utils v0.16.6
 	vbom.ml/util v0.0.0-20180919145318-efcd4e0f9787
 )
+
+// workaround for https://github.com/kubernetes/kubernetes/issues/79384#issuecomment-505627280
