@@ -23,15 +23,15 @@ require (
 	github.com/exponent-io/jsonpath v0.0.0-20151013193312-d6023ce2651d
 	github.com/ghodss/yaml v1.0.1-0.20190212211648-25d852aebe32
 	github.com/giantswarm/apiextensions v0.2.0
-	github.com/giantswarm/apprclient v0.2.0 // waiting!
+	github.com/giantswarm/apprclient v0.2.0
 	github.com/giantswarm/backoff v0.2.0
-	github.com/giantswarm/errors v0.2.0 // waiting!
-	github.com/giantswarm/helmclient v0.2.0 // waiting!
+	github.com/giantswarm/errors v0.2.0
+	github.com/giantswarm/helmclient v0.2.0
 	github.com/giantswarm/k8sclient v0.2.0
 	github.com/giantswarm/k8sportforward v0.2.0
 	github.com/giantswarm/microerror v0.2.0
 	github.com/giantswarm/micrologger v0.3.1
-	github.com/giantswarm/valuemodifier v0.0.0-20200205145307-cb5c3d1aa74d // waiting!
+	github.com/giantswarm/valuemodifier v0.2.0
 	github.com/go-kit/kit v0.6.0
 	github.com/go-logfmt/logfmt v0.4.0
 	github.com/go-openapi/jsonpointer v0.19.3
