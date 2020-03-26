@@ -20,11 +20,6 @@ require (
 	k8s.io/helm v2.16.4+incompatible
 )
 
-// Workaround for https://github.com/sirupsen/logrus/issues/570
-// Additional reading: https://github.com/golang/go/issues/28489
-// Solution: https://github.com/moby/moby/issues/39302
-replace github.com/docker/docker => github.com/docker/engine v1.4.2-0.20191113042239-ea84732a7725
-
 // Workaround for https://github.com/kubernetes/kubernetes/issues/79384#issuecomment-505627280
 replace (
 	k8s.io/api => k8s.io/api v0.0.0-20191114100352-16d7abae0d2a
