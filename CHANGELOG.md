@@ -7,11 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Set node port in vault helm chart.
+
 ## [0.2.0] 2020-03-26
 
 ### Changed
-- switched from dep to go modules
-- switched to architect-orb
+
+- Switched from dep to go modules.
+- Switched to architect-orb.
 
 ## [0.1.0] 2020-03-19
 
