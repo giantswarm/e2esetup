@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Set node port in vault helm chart.
+- Push Helm Chart to Appr on Quay.
 
 ## [0.2.0] 2020-03-26
 

@@ -12,3 +12,10 @@ workflows:
             # Trigger job also on git tag.
             tags:
               only: /^v.*/
+
+      - architect/go-architect-legacy:
+          name: go-deploy
+          command: deploy
+          filters:
+            branches:
+              only: master
