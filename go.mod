@@ -17,7 +17,7 @@ require (
 	k8s.io/apiextensions-apiserver v0.16.6
 	k8s.io/apimachinery v0.16.6
 	k8s.io/client-go v0.16.6
-	k8s.io/helm v2.16.4+incompatible
+	k8s.io/helm v2.16.5+incompatible
 )
 
 // Workaround for https://github.com/kubernetes/kubernetes/issues/79384#issuecomment-505627280
