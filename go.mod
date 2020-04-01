@@ -1,6 +1,6 @@
 module github.com/giantswarm/e2esetup
 
-go 1.13.1
+go 1.13
 
 require (
 	github.com/giantswarm/backoff v0.2.0
