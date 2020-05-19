@@ -2,19 +2,14 @@ package helmclient
 
 import (
 	helmclientlib "github.com/giantswarm/helmclient"
+	"github.com/giantswarm/k8sclient"
 	"github.com/giantswarm/microerror"
 	"github.com/giantswarm/micrologger"
-	"k8s.io/client-go/kubernetes"
-	"k8s.io/client-go/rest"
 )
 
 type ClientConfig struct {
-	K8sClient  kubernetes.Interface
-	Logger     micrologger.Logger
-	RestConfig *rest.Config
-
-	TillerImage     string
-	TillerNamespace string
+	K8sClient k8sclient.Interface
+	Logger    micrologger.Logger
 }
 
 type Client struct {
@@ -30,20 +25,14 @@ func NewClient(config ClientConfig) (*Client, error) {
 	if config.Logger == nil {
 		return nil, microerror.Maskf(invalidConfigError, "%T.Logger must not be empty", config)
 	}
-	if config.RestConfig == nil {
-		return nil, microerror.Maskf(invalidConfigError, "%T.RestConfig must not be empty", config)
-	}
 
 	var err error
 
 	var helmClient helmclientlib.Interface
 	{
 		c := helmclientlib.Config{
-			K8sClient:  config.K8sClient,
-			Logger:     config.Logger,
-			RestConfig: config.RestConfig,
-
-			TillerNamespace: config.TillerNamespace,
+			K8sClient: config.K8sClient,
+			Logger:    config.Logger,
 		}
 
 		helmClient, err = helmclientlib.New(c)

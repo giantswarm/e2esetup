@@ -27,12 +27,6 @@ func Setup(ctx context.Context, m *testing.M, config Config) (int, error) {
 		v = 1
 	}
 
-	err = config.HelmClient.EnsureTillerInstalled(ctx)
-	if err != nil {
-		errors = append(errors, err)
-		v = 1
-	}
-
 	if v == 0 {
 		v = m.Run()
 	}
