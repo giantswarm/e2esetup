@@ -27,7 +27,7 @@ type Config struct {
 	ApprClient *apprclient.Client
 	HelmClient *helmclient.Client
 	Logger     micrologger.Logger
-	K8sClients *k8sclient.Clients
+	K8sClient  *k8sclient.Clients
 
 	Namespace string
 }
@@ -36,7 +36,7 @@ type Release struct {
 	apprClient *apprclient.Client
 	helmClient *helmclient.Client
 	logger     micrologger.Logger
-	k8sClients *k8sclient.Clients
+	k8sClient  *k8sclient.Clients
 
 	condition  *conditionSet
 	fileLogger *filelogger.FileLogger
@@ -71,8 +71,8 @@ func New(config Config) (*Release, error) {
 	if config.HelmClient == nil {
 		return nil, microerror.Maskf(invalidConfigError, "%T.HelmClient must not be empty", config)
 	}
-	if config.K8sClients == nil {
-		return nil, microerror.Maskf(invalidConfigError, "%T.K8sClients must not be empty", config)
+	if config.K8sClient == nil {
+		return nil, microerror.Maskf(invalidConfigError, "%T.K8sClient must not be empty", config)
 	}
 	if config.Namespace == "" {
 		config.Namespace = defaultNamespace
@@ -84,7 +84,7 @@ func New(config Config) (*Release, error) {
 	{
 
 		c := conditionSetConfig{
-			K8sClients: config.K8sClients,
+			K8sClients: config.K8sClient,
 			Logger:     config.Logger,
 		}
 
@@ -97,7 +97,7 @@ func New(config Config) (*Release, error) {
 	var fileLogger *filelogger.FileLogger
 	{
 		c := filelogger.Config{
-			K8sClient: config.K8sClients.K8sClient(),
+			K8sClient: config.K8sClient.K8sClient(),
 			Logger:    config.Logger,
 		}
 
@@ -110,7 +110,7 @@ func New(config Config) (*Release, error) {
 	r := &Release{
 		apprClient: config.ApprClient,
 		helmClient: config.HelmClient,
-		k8sClients: config.K8sClients,
+		k8sClient:  config.K8sClient,
 		logger:     config.Logger,
 
 		namespace: config.Namespace,
@@ -366,7 +366,7 @@ func (r *Release) WaitForChartInfo(ctx context.Context, release string, version 
 }
 
 func (r *Release) podName(namespace, labelSelector string) (string, error) {
-	pods, err := r.k8sClients.K8sClient().CoreV1().Pods(namespace).List(metav1.ListOptions{LabelSelector: labelSelector})
+	pods, err := r.k8sClient.K8sClient().CoreV1().Pods(namespace).List(metav1.ListOptions{LabelSelector: labelSelector})
 	if err != nil {
 		return "", microerror.Mask(err)
 	}
