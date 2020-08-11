@@ -6,7 +6,7 @@ import (
 
 	"github.com/giantswarm/microerror"
 
-	"github.com/giantswarm/e2esetup/chart/env"
+	"github.com/giantswarm/e2esetup/v2/chart/env"
 )
 
 func Setup(ctx context.Context, m *testing.M, config Config) (int, error) {
