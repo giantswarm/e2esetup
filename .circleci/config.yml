@@ -18,4 +18,4 @@ workflows:
           command: deploy
           filters:
             branches:
-              only: vault-k8s-auth
+              only: master
