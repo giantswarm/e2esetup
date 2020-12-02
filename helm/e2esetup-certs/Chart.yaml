@@ -1,4 +1,4 @@
 name: e2esetup-certs-chart
 version: [[ .Version ]]
-appVersion: [[ .appVersion ]]
+appVersion: [[ .AppVersion ]]
 description: CertConfig CRs for testing purposes.

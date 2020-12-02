@@ -1,4 +1,4 @@
 name: e2esetup-vault-chart
 version: [[ .Version ]]
-appVersion: [[ .appVersion ]]
+appVersion: [[ .AppVersion ]]
 description: Vault installation for testing purposes.
