@@ -1,3 +1,4 @@
 name: e2esetup-certs-chart
-version: 1.0.0-[[ .SHA ]]
+version: [[ .Version ]]
+appVersion: [[ .appVersion ]]
 description: CertConfig CRs for testing purposes.

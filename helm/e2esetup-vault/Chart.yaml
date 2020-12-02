@@ -1,3 +1,4 @@
 name: e2esetup-vault-chart
-version: 1.0.0-[[ .SHA ]]
+version: [[ .Version ]]
+appVersion: [[ .appVersion ]]
 description: Vault installation for testing purposes.
