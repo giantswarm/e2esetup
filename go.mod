@@ -20,3 +20,5 @@ require (
 	k8s.io/client-go v0.18.5
 	sigs.k8s.io/yaml v1.2.0
 )
+
+replace github.com/coreos/etcd v3.3.10+incompatible => github.com/coreos/etcd v3.3.25+incompatible
